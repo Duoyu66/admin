@@ -1,0 +1,409 @@
+@import './variables.less';
+
+// 布局 — 使用 CSS 变量，随亮暗色与主题色即时切换（勿用 Less 编译期色值）
+.ant-layout {
+  background: var(--bg-base) !important;
+}
+
+.ant-layout-sider,
+.admin-sider.ant-layout-sider {
+  background: var(--bg-sidebar) !important;
+}
+
+.ant-layout-header.admin-header {
+  background: color-mix(in srgb, var(--bg-container) 82%, transparent) !important;
+}
+
+// 布局与侧栏 — 使用 antd 原生折叠动画，避免重复 transition 导致闪烁
+.admin-sider {
+  border-right: 1px solid var(--border-subtle) !important;
+  box-shadow: @shadow-xs;
+  flex-shrink: 0;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+
+  .ant-layout-sider-children {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  &.ant-layout-sider-collapsed {
+    .admin-sider-brand {
+      justify-content: center;
+      height: @header-height;
+      padding-inline: 0;
+    }
+
+    .admin-sider-brand-text {
+      display: none;
+    }
+  }
+}
+
+.admin-sider-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: @header-height;
+  min-height: @header-height;
+  max-height: @header-height;
+  padding: 0 16px;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.admin-sider-brand-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.admin-sider-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  font-family: @font-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-on-primary, @text-on-primary);
+  background: var(--color-primary);
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.admin-sider-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.admin-sider-sub {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.admin-menu {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-inline-end: none !important;
+  padding: 8px;
+}
+
+// 顶栏
+.admin-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+  height: @header-height;
+  min-height: @header-height;
+  max-height: @header-height;
+  padding: 0 @content-padding !important;
+  line-height: 1;
+  border-bottom: 1px solid var(--border-subtle);
+  backdrop-filter: blur(8px);
+}
+
+.admin-header-collapse-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  color: var(--text-secondary) !important;
+
+  &:hover {
+    color: var(--text-primary) !important;
+    background: var(--bg-hover) !important;
+  }
+
+  @media (max-width: 768px) {
+    display: none !important;
+  }
+}
+
+.admin-header-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+
+  &:hover {
+    color: var(--text-primary);
+    background: var(--bg-hover);
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+  }
+}
+
+.admin-header-breadcrumb {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.admin-header-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+
+  .anticon {
+    font-size: 18px;
+    color: inherit;
+  }
+
+  &:hover {
+    color: var(--text-primary);
+    background: var(--bg-hover);
+  }
+}
+
+.admin-header-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: auto;
+  padding: 4px 8px;
+}
+
+// 内容区 — 仅此区域纵向滚动
+.admin-content {
+  flex: 1;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: @content-padding !important;
+  background: var(--bg-base) !important;
+}
+
+// 页面通用
+.page-header-block {
+  margin-bottom: 20px;
+
+  .ant-typography + .ant-typography {
+    margin-top: 4px;
+  }
+}
+
+.page-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.page-toolbar-spacer {
+  flex: 1;
+  min-width: 8px;
+}
+
+// 表格操作列
+.table-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: -4px;
+}
+
+// 登录 — 左侧背景图 + 右侧实心表单区
+.login-page {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg-base);
+}
+
+.login-page__visual {
+  flex: 1;
+  min-width: 0;
+  background: url('../img/bg.png') center center / cover no-repeat;
+}
+
+.login-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 460px;
+  min-height: 100vh;
+  padding: 48px 56px;
+  background: var(--bg-container);
+  box-shadow: -8px 0 32px color-mix(in srgb, var(--text-primary) 8%, transparent);
+}
+
+.login-brand {
+  margin-bottom: 32px;
+}
+
+.login-hint {
+  margin-top: 28px !important;
+  margin-bottom: 0 !important;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.login-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 16px;
+  font-family: @font-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-on-primary, @text-on-primary);
+  background: var(--color-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 900px) {
+  .login-page {
+    flex-direction: column;
+  }
+
+  .login-page__visual {
+    min-height: 36vh;
+    flex: none;
+  }
+
+  .login-panel {
+    max-width: none;
+    min-height: auto;
+    flex: 1;
+    padding: 32px 24px 40px;
+    box-shadow: 0 -4px 24px rgba(31, 46, 36, 0.08);
+  }
+}
+
+// 图标选择器
+.icon-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+  gap: 8px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+.icon-picker-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  height: auto !important;
+  padding: 10px 6px !important;
+}
+
+// 部门树 / 权限树
+.dept-tree-panel,
+.perm-tree-panel {
+  max-height: 420px;
+  overflow-y: auto;
+  padding: 8px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+// 角色多选
+.role-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+
+  .ant-checkbox-wrapper {
+    width: 100%;
+    margin-inline-start: 0 !important;
+    padding: 10px 12px;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+
+    &:hover {
+      border-color: var(--border-default);
+      background: var(--bg-hover);
+    }
+  }
+
+  .ant-checkbox-wrapper-checked {
+    border-color: var(--color-primary);
+    background: var(--color-primary-soft);
+  }
+}
+
+.role-option-label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-inline-start: 4px;
+}
+
+.role-option-code {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+// Message 轻提示 — 半透明毛玻璃（随主题色）
+body .ant-message {
+  --ant-message-content-bg: transparent !important;
+}
+
+body .ant-message .ant-message-notice,
+body .ant-message-notice {
+  background: color-mix(in srgb, var(--bg-container) 38%, transparent) !important;
+  backdrop-filter: blur(20px) saturate(1.25) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.25) !important;
+  border: 1px solid color-mix(in srgb, var(--border-default) 45%, transparent) !important;
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--text-primary) 10%, transparent) !important;
+}
+
+html[data-theme='dark'] body .ant-message .ant-message-notice,
+html[data-theme='dark'] body .ant-message-notice {
+  background: color-mix(in srgb, var(--bg-container) 55%, transparent) !important;
+}
+
+@media (max-width: 768px) {
+  .admin-content {
+    padding: 16px !important;
+  }
+}

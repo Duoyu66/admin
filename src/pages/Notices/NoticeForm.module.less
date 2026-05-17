@@ -1,0 +1,44 @@
+@import '../../styles/variables.less';
+
+.page {
+  width: 100%;
+}
+
+.back {
+  margin-bottom: 16px;
+  padding-inline: 0;
+  color: @text-secondary;
+
+  &:hover {
+    color: @color-primary-active;
+  }
+}
+
+.card {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: @shadow-xs;
+}
+
+.form {
+  margin-top: 8px;
+}
+
+.metaRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.metaItem {
+  margin-bottom: 0;
+}
+
+.actions {
+  margin-top: 8px;
+  margin-bottom: 0;
+}

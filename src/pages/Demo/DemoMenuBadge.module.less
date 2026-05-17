@@ -1,0 +1,51 @@
+@import '../../styles/variables.less';
+
+.previewMenu {
+  border-inline-end: none !important;
+  background: transparent;
+}
+
+.menuItemLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+
+.menuItemText {
+  flex: 1;
+  min-width: 0;
+}
+
+.menuBadge {
+  flex-shrink: 0;
+}
+
+.form {
+  max-width: 480px;
+}
+
+.colorGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.colorOption {
+  margin-inline-end: 0 !important;
+
+  :global(.ant-radio) {
+    display: none;
+  }
+
+  :global(.ant-radio + span) {
+    padding: 0;
+  }
+}
+
+.hint {
+  margin: 0 0 16px !important;
+  font-size: 13px;
+  line-height: 1.6;
+}

@@ -1,0 +1,22 @@
+@import '../../styles/variables.less';
+
+.sider {
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .sider {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    transform: translateX(-100%);
+    transition: transform @transition-base !important;
+  }
+
+  .siderOpen {
+    transform: translateX(0);
+  }
+}

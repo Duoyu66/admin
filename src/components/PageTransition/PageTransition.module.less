@@ -1,0 +1,26 @@
+@import '../../styles/variables.less';
+
+.wrap {
+  min-height: 0;
+}
+
+.page {
+  animation: pageEnter @transition-base forwards;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page {
+    animation: none;
+  }
+}

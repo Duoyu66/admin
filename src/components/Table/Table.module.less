@@ -1,0 +1,87 @@
+@import '../../styles/variables.less';
+
+.wrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.table th,
+.table td {
+  padding: 14px 20px;
+  text-align: left;
+  border-bottom: 1px solid @border-subtle;
+}
+
+.table th {
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: @text-muted;
+  background: @bg-surface;
+  white-space: nowrap;
+}
+
+.table th:first-child {
+  border-radius: 0;
+}
+
+.table tbody tr {
+  transition: background-color @transition-fast;
+
+  &:hover {
+    background: rgba(240, 235, 227, 0.5);
+  }
+
+  &:last-child td {
+    border-bottom: none;
+  }
+}
+
+.table td {
+  color: @text-primary;
+}
+
+.empty {
+  padding: 56px 20px;
+  text-align: center;
+  font-size: 0.875rem;
+  color: @text-muted;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: @radius-full;
+  letter-spacing: 0.02em;
+}
+
+.active {
+  color: @color-success;
+  background: @color-success-soft;
+}
+
+.inactive {
+  color: @text-muted;
+  background: @bg-hover;
+}
+
+.pending {
+  color: @color-warning;
+  background: @color-warning-soft;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}

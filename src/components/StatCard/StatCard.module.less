@@ -1,0 +1,66 @@
+@import '../../styles/variables.less';
+
+.card {
+  padding: 20px 22px;
+  background: @bg-elevated;
+  border: 1px solid @border-subtle;
+  border-radius: @radius-lg;
+  box-shadow: @shadow-sm;
+  transition: border-color @transition-fast, box-shadow @transition-fast;
+
+  &:hover {
+    border-color: @border-default;
+    box-shadow: @shadow-md;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: @text-muted;
+  letter-spacing: 0.02em;
+}
+
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: @color-primary;
+  background: @color-primary-soft;
+  border-radius: @radius-md;
+}
+
+.value {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: @text-primary;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.change {
+  margin-top: 10px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.up {
+  color: @color-success;
+}
+
+.down {
+  color: @color-danger;
+}
+
+.neutral {
+  color: @text-muted;
+}

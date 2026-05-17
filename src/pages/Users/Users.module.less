@@ -1,0 +1,59 @@
+@import '../../styles/variables.less';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fieldLabel {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: @text-secondary;
+}
+
+.roleHint {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  font-size: 0.8125rem;
+  color: @text-secondary;
+  line-height: 1.55;
+  background: @bg-surface;
+  border-radius: @radius-md;
+  border-left: 3px solid @color-primary;
+
+  strong {
+    color: @text-primary;
+    font-weight: 600;
+  }
+}
+
+.noRole {
+  font-size: 0.8125rem;
+  color: @text-muted;
+  font-style: italic;
+}
+
+.roleTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.roleTag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: darken(@color-primary, 12%);
+  background: @color-primary-soft;
+  border: 1px solid rgba(184, 149, 74, 0.25);
+  border-radius: @radius-full;
+}

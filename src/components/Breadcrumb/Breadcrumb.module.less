@@ -1,0 +1,36 @@
+@import '../../styles/variables.less';
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8125rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: @text-muted;
+}
+
+.item:last-child {
+  color: @text-primary;
+  font-weight: 500;
+}
+
+.link {
+  color: @text-muted;
+  transition: color @transition-fast;
+
+  &:hover {
+    color: @color-primary;
+  }
+}
+
+.sep {
+  color: @text-muted;
+  opacity: 0.4;
+  user-select: none;
+}

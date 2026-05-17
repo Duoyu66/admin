@@ -1,0 +1,80 @@
+@import './variables.less';
+
+.pageHeader {
+  margin-bottom: 32px;
+}
+
+.pageTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: @text-primary;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+}
+
+.pageDesc {
+  margin-top: 8px;
+  font-size: 0.875rem;
+  color: @text-muted;
+  line-height: 1.5;
+  max-width: 560px;
+}
+
+.pageToolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.toolbarSpacer {
+  flex: 1;
+  min-width: 8px;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.sectionCard {
+  background: @bg-elevated;
+  border: 1px solid @border-subtle;
+  border-radius: @radius-lg;
+  box-shadow: @shadow-sm;
+  overflow: hidden;
+}
+
+.sectionCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  background: linear-gradient(180deg, @bg-surface 0%, @bg-elevated 100%);
+  border-bottom: 1px solid @border-subtle;
+}
+
+.sectionCardTitle {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: @text-secondary;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.sectionCardBody {
+  padding: 4px 0 8px;
+}
+
+.sectionCardBodyFlush {
+  padding: 0;
+}
+
+.paginationWrap {
+  padding: 8px 22px 18px;
+  border-top: 1px solid @border-subtle;
+  background: @bg-elevated;
+}

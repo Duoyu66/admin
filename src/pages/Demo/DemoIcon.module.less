@@ -1,0 +1,34 @@
+@import '../../styles/variables.less';
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 12px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 8px;
+  background: @bg-surface;
+  border: 1px solid @border-subtle;
+  border-radius: @radius-md;
+  transition:
+    border-color @transition-fast,
+    box-shadow @transition-fast,
+    transform @transition-fast;
+  cursor: default;
+
+  &:hover {
+    border-color: @color-primary;
+    box-shadow: @shadow-xs;
+    transform: translateY(-2px);
+  }
+}
+
+.label {
+  font-size: 0.75rem;
+  text-align: center;
+}

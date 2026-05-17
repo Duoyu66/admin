@@ -1,0 +1,66 @@
+@import '../../styles/variables.less';
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 0 4px;
+}
+
+.info {
+  font-size: 0.8125rem;
+  color: @text-muted;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 10px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: @text-secondary;
+  background: @bg-elevated;
+  border: 1px solid @border-default;
+  border-radius: @radius-md;
+  transition: background-color @transition-fast, color @transition-fast, border-color @transition-fast;
+
+  &:hover:not(:disabled) {
+    background: @bg-hover;
+    color: @text-primary;
+    border-color: @border-strong;
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+}
+
+.active {
+  background: @btn-primary-bg;
+  border-color: @btn-primary-bg;
+  color: @text-inverse;
+
+  &:hover:not(:disabled) {
+    background: @btn-primary-hover;
+    border-color: @btn-primary-hover;
+    color: @text-inverse;
+  }
+}
+
+.ellipsis {
+  padding: 0 4px;
+  color: @text-muted;
+  font-size: 0.875rem;
+}

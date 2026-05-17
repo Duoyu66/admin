@@ -1,0 +1,46 @@
+@import '../../styles/variables.less';
+
+.wrap {
+  display: flex;
+  gap: 24px;
+  min-height: 320px;
+}
+
+.menu {
+  flex-shrink: 0;
+  padding: 8px;
+  background: @bg-surface;
+  border: 1px solid @border-subtle;
+  border-radius: @radius-md;
+}
+
+.content {
+  flex: 1;
+  padding: 20px 24px;
+  background: @bg-surface;
+  border: 1px solid @border-subtle;
+  border-radius: @radius-md;
+}
+
+.tip {
+  margin: 0 0 8px;
+  font-size: 0.875rem;
+  color: @text-secondary;
+}
+
+.code {
+  display: inline-block;
+  padding: 4px 10px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  color: @color-primary;
+  background: fade(@color-primary, 8%);
+  border-radius: @radius-sm;
+}
+
+.desc {
+  margin: 20px 0 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: @text-muted;
+}

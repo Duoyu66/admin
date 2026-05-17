@@ -1,0 +1,93 @@
+@import '../../styles/variables.less';
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 18px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  border-radius: @radius-md;
+  border: 1px solid transparent;
+  box-shadow: @shadow-xs;
+  transition:
+    background-color @transition-fast,
+    border-color @transition-fast,
+    color @transition-fast,
+    box-shadow @transition-fast,
+    transform @transition-fast;
+  white-space: nowrap;
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+.primary {
+  background: @btn-primary-bg;
+  color: @text-inverse;
+  border-color: @btn-primary-bg;
+  box-shadow: @shadow-sm;
+
+  &:hover:not(:disabled) {
+    background: @btn-primary-hover;
+    border-color: @btn-primary-hover;
+    box-shadow: @shadow-md;
+  }
+}
+
+.secondary {
+  background: @bg-elevated;
+  color: @text-secondary;
+  border-color: @border-default;
+
+  &:hover:not(:disabled) {
+    background: @bg-hover;
+    color: @text-primary;
+    border-color: @border-strong;
+  }
+}
+
+.ghost {
+  background: transparent;
+  color: @text-secondary;
+  border-color: transparent;
+  box-shadow: none;
+
+  &:hover:not(:disabled) {
+    background: @bg-hover;
+    color: @text-primary;
+  }
+}
+
+.danger {
+  background: @color-danger-soft;
+  color: @color-danger;
+  border-color: transparent;
+  box-shadow: none;
+
+  &:hover:not(:disabled) {
+    background: rgba(255, 77, 79, 0.14);
+    color: @color-danger;
+  }
+}
+
+.sm {
+  padding: 6px 12px;
+  font-size: 0.8125rem;
+  border-radius: @radius-sm;
+}
+
+.lg {
+  padding: 11px 22px;
+  font-size: 0.9375rem;
+}

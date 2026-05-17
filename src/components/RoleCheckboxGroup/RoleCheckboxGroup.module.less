@@ -1,0 +1,77 @@
+@import '../../styles/variables.less';
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  cursor: pointer;
+  background: @bg-elevated;
+  border: 1px solid @border-default;
+  border-radius: @radius-md;
+  transition:
+    border-color @transition-fast,
+    background-color @transition-fast,
+    box-shadow @transition-fast;
+
+  &:hover:not(.itemDisabled) {
+    border-color: @border-strong;
+    background: @bg-hover;
+  }
+}
+
+.itemChecked {
+  border-color: @color-primary;
+  background: @color-primary-soft;
+  box-shadow: @focus-ring;
+
+  .name {
+    color: @text-primary;
+    font-weight: 500;
+  }
+}
+
+.itemDisabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.input {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  accent-color: @color-primary;
+  cursor: pointer;
+}
+
+.name {
+  flex: 1;
+  font-size: 0.875rem;
+  color: @text-secondary;
+  transition: color @transition-fast;
+}
+
+.code {
+  padding: 2px 8px;
+  font-size: 0.6875rem;
+  font-family: ui-monospace, monospace;
+  color: @text-muted;
+  background: @bg-surface;
+  border-radius: @radius-sm;
+}
+
+.empty {
+  margin: 0;
+  padding: 24px;
+  font-size: 0.875rem;
+  color: @text-muted;
+  text-align: center;
+  background: @bg-surface;
+  border-radius: @radius-md;
+}

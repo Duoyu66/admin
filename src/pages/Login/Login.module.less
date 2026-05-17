@@ -1,0 +1,28 @@
+@import '../../styles/variables.less';
+
+.page {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+  overflow: hidden;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(135deg, rgba(244, 247, 245, 0.92) 0%, rgba(237, 245, 239, 0.88) 100%),
+    url('https://images.unsplash.com/photo-1454165804603-c66757dfe904?auto=format&fit=crop&w=1920&q=80')
+      center / cover no-repeat;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 920px;
+}

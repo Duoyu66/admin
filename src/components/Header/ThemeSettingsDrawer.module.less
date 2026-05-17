@@ -1,0 +1,70 @@
+@import '../../styles/variables.less';
+
+.sectionTitle {
+  margin: 0 0 12px !important;
+  font-size: 14px !important;
+}
+
+.presetGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.presetCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 8px;
+  background: var(--bg-surface);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    border-color @transition-fast,
+    box-shadow @transition-fast,
+    transform @transition-fast;
+
+  &:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-1px);
+  }
+}
+
+.presetCardActive {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+.swatch {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  box-shadow: @shadow-xs;
+}
+
+.presetName {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.check {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 12px;
+  color: var(--color-primary);
+}
+
+.radiusRow {
+  margin-bottom: 20px;
+}
+
+.hint {
+  margin: 0 !important;
+  font-size: 12px !important;
+  line-height: 1.6 !important;
+}

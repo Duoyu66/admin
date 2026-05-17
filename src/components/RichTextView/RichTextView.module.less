@@ -1,0 +1,58 @@
+@import '../../styles/variables.less';
+
+.view {
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: @text-primary;
+  word-break: break-word;
+
+  :global {
+    p {
+      margin: 0 0 0.75em;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin: 1em 0 0.5em;
+      font-weight: 600;
+    }
+
+    ul,
+    ol {
+      margin: 0 0 0.75em;
+      padding-left: 1.5em;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    blockquote {
+      margin: 0 0 0.75em;
+      padding: 8px 12px;
+      border-left: 3px solid @color-primary;
+      background: @bg-surface;
+      color: @text-secondary;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 0.75em;
+    }
+
+    th,
+    td {
+      border: 1px solid @border-default;
+      padding: 8px;
+    }
+
+    a {
+      color: @color-primary;
+    }
+  }
+}

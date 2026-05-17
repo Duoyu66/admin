@@ -1,0 +1,40 @@
+@import '../../../styles/variables.less';
+@import '../../../styles/mixins.less';
+
+.card {
+  .card-surface();
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid @border-subtle;
+}
+
+.title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: @text-primary;
+}
+
+.extra {
+  flex-shrink: 0;
+}
+
+.body {
+  padding: 20px;
+}
+
+.bodyFlush {
+  padding: 0;
+}
+
+.footer {
+  padding: 12px 20px 16px;
+  border-top: 1px solid @border-subtle;
+  background: @bg-surface;
+}

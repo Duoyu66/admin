@@ -1,0 +1,26 @@
+@import '../../styles/variables.less';
+
+.permTree {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.permRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  font-size: 0.875rem;
+  color: @text-primary;
+  cursor: pointer;
+
+  input {
+    accent-color: @color-primary;
+  }
+}
+
+.permCode {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: @text-muted;
+}

@@ -1,0 +1,84 @@
+@import '../../styles/variables.less';
+
+.tree {
+  padding: 8px 12px !important;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 8px;
+  border-bottom: 1px solid @border-subtle;
+  font-size: 0.875rem;
+  transition: background-color @transition-fast;
+
+  &:hover {
+    background: rgba(240, 235, 227, 0.4);
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.iconBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  color: @text-secondary;
+  background: @bg-surface;
+  border: 1px solid @border-default;
+  border-radius: @radius-md;
+  transition: border-color @transition-fast, color @transition-fast, background-color @transition-fast;
+
+  &:hover {
+    color: @color-primary;
+    background: @color-primary-soft;
+    border-color: @color-primary;
+  }
+}
+
+.iconPlaceholder {
+  width: 36px;
+  flex-shrink: 0;
+}
+
+.name {
+  min-width: 120px;
+  font-weight: 500;
+  color: @text-primary;
+}
+
+.code {
+  padding: 2px 8px;
+  color: @text-secondary;
+  font-family: ui-monospace, monospace;
+  font-size: 0.75rem;
+  background: @bg-surface;
+  border-radius: @radius-sm;
+}
+
+.type {
+  padding: 3px 8px;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: @text-muted;
+  background: @bg-hover;
+  border-radius: @radius-sm;
+}
+
+.iconName {
+  font-size: 0.75rem;
+  color: @text-muted;
+  font-family: ui-monospace, monospace;
+}
+
+.path {
+  margin-left: auto;
+  font-size: 0.8125rem;
+  color: @text-muted;
+}

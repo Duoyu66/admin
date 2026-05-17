@@ -1,0 +1,78 @@
+@import '../../styles/variables.less';
+
+.kpiRow {
+  margin-bottom: 0;
+}
+
+.kpiCard {
+  border-radius: 12px;
+  box-shadow: @shadow-xs;
+}
+
+.kpiInner {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.kpiIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  font-size: 22px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.kpiBody {
+  min-width: 0;
+}
+
+.kpiTitle {
+  display: block;
+  font-size: 0.8125rem;
+  margin-bottom: 4px;
+}
+
+.kpiValue {
+  display: block;
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: @text-primary;
+  font-variant-numeric: tabular-nums;
+}
+
+.kpiSub {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.75rem;
+}
+
+.chartRow {
+  margin-top: 0;
+}
+
+.chartCard {
+  border-radius: 12px;
+  box-shadow: @shadow-xs;
+  height: 100%;
+}
+
+.quickCard {
+  margin-top: 16px;
+  border-radius: 12px;
+  box-shadow: @shadow-xs;
+}
+
+.quickActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  a {
+    text-decoration: none;
+  }
+}

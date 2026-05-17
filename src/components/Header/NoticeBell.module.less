@@ -1,0 +1,57 @@
+@import '../../styles/variables.less';
+
+.popover {
+  :global(.ant-popover-inner) {
+    padding: 0;
+  }
+}
+
+.panel {
+  width: 360px;
+  max-width: 90vw;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid @border-subtle;
+}
+
+.list {
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.item {
+  cursor: pointer;
+  padding: 10px 16px !important;
+  transition: background-color @transition-fast;
+
+  &:hover {
+    background: @bg-hover;
+  }
+}
+
+.unread {
+  background: @color-primary-soft;
+}
+
+.read {
+  opacity: 0.85;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: @color-primary;
+  flex-shrink: 0;
+}
+
+.footer {
+  padding: 8px 16px;
+  border-top: 1px solid @border-subtle;
+  text-align: center;
+}

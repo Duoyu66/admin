@@ -1,0 +1,40 @@
+@import '../../../styles/variables.less';
+
+.alert {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 0.875rem;
+  border-radius: @radius-md;
+  animation: alertIn 0.35s @ease-spring forwards;
+}
+
+@keyframes alertIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.success {
+  color: @color-success;
+  background: @color-success-soft;
+  border: 1px solid rgba(0, 180, 42, 0.2);
+}
+
+.error {
+  color: @color-danger;
+  background: @color-danger-soft;
+  border: 1px solid rgba(245, 63, 63, 0.2);
+}
+
+.info {
+  color: @color-primary;
+  background: @color-primary-soft;
+  border: 1px solid rgba(22, 100, 255, 0.15);
+}

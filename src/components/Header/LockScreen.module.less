@@ -1,0 +1,66 @@
+@import '../../styles/variables.less';
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 20, 17, 0.55);
+  backdrop-filter: blur(24px) saturate(1.2);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
+}
+
+.panel {
+  width: min(360px, 92vw);
+  padding: 32px 28px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: var(--radius-xl);
+  box-shadow: @shadow-lg;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  [data-theme='dark'] & {
+    background: rgba(26, 33, 28, 0.72);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+}
+
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 12px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-on-primary, #fff);
+  background: var(--color-primary);
+  border-radius: 50%;
+}
+
+.name {
+  margin: 0 0 16px !important;
+}
+
+.clock {
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+.date {
+  display: block;
+  margin: 8px 0 24px;
+  font-size: 13px;
+}
+
+.input {
+  margin-bottom: 12px;
+}
