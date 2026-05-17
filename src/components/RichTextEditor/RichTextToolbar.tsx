@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import type { Editor } from '@tiptap/react';
 import { Tooltip } from 'antd';
 import {
@@ -21,6 +21,8 @@ import {
   Strikethrough,
   Underline,
   Undo2,
+  Eye,
+  X,
 } from 'lucide-react';
 import styles from './RichTextEditor.module.less';
 
@@ -62,8 +64,25 @@ function Divider() {
 
 /** Tiptap 工具栏 */
 export function RichTextToolbar({ editor }: RichTextToolbarProps) {
+  const [, tick] = useState(0);
+  // 预览弹窗状态（正确写法：Hooks 全部放在顶部）
+  const [previewOpen, setPreviewOpen] = useState(false);
+
+  // 编辑器刷新监听
+  useEffect(() => {
+    if (!editor) return;
+    const refresh = () => tick((n) => n + 1);
+    editor.on('selectionUpdate', refresh);
+    editor.on('transaction', refresh);
+    return () => {
+      editor.off('selectionUpdate', refresh);
+      editor.off('transaction', refresh);
+    };
+  }, [editor]);
+
   if (!editor) return null;
 
+  // ========== 所有业务逻辑全部提取到这里 ==========
   const setLink = () => {
     const previous = editor.getAttributes('link').href as string | undefined;
     const url = window.prompt('链接地址', previous ?? 'https://');
@@ -81,10 +100,14 @@ export function RichTextToolbar({ editor }: RichTextToolbarProps) {
     editor.chain().focus().setImage({ src: url }).run();
   };
 
+  const openPreview = () => setPreviewOpen(true);
+  const closePreview = () => setPreviewOpen(false);
+
   const iconSize = 16;
 
   return (
     <div className={styles.toolbar} role="toolbar" aria-label="富文本工具栏">
+      {/* 撤销 / 重做 */}
       <ToolbarButton
         title="撤销"
         disabled={!editor.can().chain().focus().undo().run()}
@@ -102,6 +125,7 @@ export function RichTextToolbar({ editor }: RichTextToolbarProps) {
 
       <Divider />
 
+      {/* 标题 */}
       <ToolbarButton
         title="标题 1"
         active={editor.isActive('heading', { level: 1 })}
@@ -126,6 +150,7 @@ export function RichTextToolbar({ editor }: RichTextToolbarProps) {
 
       <Divider />
 
+      {/* 字体样式 */}
       <ToolbarButton
         title="加粗"
         active={editor.isActive('bold')}
@@ -157,6 +182,7 @@ export function RichTextToolbar({ editor }: RichTextToolbarProps) {
 
       <Divider />
 
+      {/* 列表 */}
       <ToolbarButton
         title="无序列表"
         active={editor.isActive('bulletList')}
@@ -188,6 +214,7 @@ export function RichTextToolbar({ editor }: RichTextToolbarProps) {
 
       <Divider />
 
+      {/* 对齐 */}
       <ToolbarButton
         title="左对齐"
         active={editor.isActive({ textAlign: 'left' })}
@@ -212,6 +239,7 @@ export function RichTextToolbar({ editor }: RichTextToolbarProps) {
 
       <Divider />
 
+      {/* 链接 / 图片 / 分割线 */}
       <ToolbarButton title="链接" active={editor.isActive('link')} onClick={setLink}>
         <Link2 size={iconSize} />
       </ToolbarButton>
@@ -224,6 +252,68 @@ export function RichTextToolbar({ editor }: RichTextToolbarProps) {
       >
         <Minus size={iconSize} />
       </ToolbarButton>
+
+      {/* ========== 右侧预览按钮 ========== */}
+      <div style={{ marginLeft: 'auto' }} />
+      <ToolbarButton title="预览" onClick={openPreview}>
+        <Eye size={iconSize} />
+      </ToolbarButton>
+
+      {/* ========== 预览弹窗 ========== */}
+      {previewOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 9999,
+            background: 'rgba(0, 0, 0, 0.4)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          onClick={closePreview}
+        >
+          <div
+            style={{
+              minWidth: 400,
+              maxWidth: '70vw',
+              maxHeight: '75vh',
+              background: '#fff',
+              borderRadius: 10,
+              padding: '24px 28px',
+              overflow: 'auto',
+              position: 'relative',
+              boxShadow: '0 6px 30px rgba(0,0,0,0.15)',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={closePreview}
+              style={{
+                position: 'absolute',
+                right: 16,
+                top: 16,
+                border: 'none',
+                background: 'none',
+                cursor: 'pointer',
+                fontSize: 18,
+                color: '#666',
+              }}
+            >
+              <X size={18} />
+            </button>
+
+            <div
+              style={{
+                fontSize: 15,
+                lineHeight: 1.8,
+                color: '#333',
+              }}
+              dangerouslySetInnerHTML={{ __html: editor.getHTML() }}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

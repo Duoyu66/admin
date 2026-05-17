@@ -44,14 +44,17 @@ export function RichTextEditor({
     [placeholder, maxLength],
   );
 
-  const editor = useEditor({
-    extensions,
-    content: value,
-    editable: !readOnly,
-    onUpdate: ({ editor: ed }) => {
-      onChange?.(ed.getHTML());
+  const editor = useEditor(
+    {
+      extensions,
+      content: value,
+      editable: !readOnly,
+      onUpdate: ({ editor: ed }) => {
+        onChange?.(ed.getHTML());
+      },
     },
-  });
+    [extensions, readOnly],
+  );
 
   useEffect(() => {
     if (!editor) return;

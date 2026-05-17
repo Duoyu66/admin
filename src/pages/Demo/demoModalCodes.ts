@@ -49,7 +49,8 @@ const [lines, setLines] = useState(3);
   />
 </Modal>`;
 
-export const CODE_DRAGGABLE = `const [open, setOpen] = useState(false);
+export const CODE_DRAGGABLE = `// useDraggableModal 见 pages/Demo/useDraggableModal.ts
+const [open, setOpen] = useState(false);
 const { position, reset, onTitleMouseDown } = useDraggableModal(open);
 
 <Modal
@@ -160,9 +161,10 @@ modal.confirm({
   onOk: () => message.success('已确认'),
 });
 
-// Prompt（输入框）
+// Prompt（输入框，建议用 ref 读取值）
+const inputRef = useRef('');
 Modal.confirm({
   title: '请输入',
-  content: <Input placeholder="备注" onChange={...} />,
-  onOk: () => message.success('已提交'),
+  content: <Input onChange={(e) => { inputRef.current = e.target.value; }} />,
+  onOk: () => message.success(\`已提交：\${inputRef.current}\`),
 });`;
