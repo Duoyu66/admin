@@ -11,6 +11,18 @@ export function deptsToTreeSelect(nodes: SysDept[]): NonNullable<TreeSelectProps
   }));
 }
 
+/** 部门树 → 带部门名称的 Tree（用于筛选侧栏） */
+export function deptsToFilterTree(nodes: SysDept[]): DataNode[] {
+  return stripEmptyChildren(nodes).map((dept) => {
+    const children = dept.children?.length ? deptsToFilterTree(dept.children) : undefined;
+    return {
+      key: dept.id,
+      title: dept.deptName,
+      children,
+    };
+  });
+}
+
 /** 部门树 → Ant Design Tree data（节点标题由 titleRender 渲染） */
 export function deptsToTreeData(nodes: SysDept[]): DataNode[] {
   return stripEmptyChildren(nodes).map((dept) => {

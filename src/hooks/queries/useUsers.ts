@@ -19,10 +19,10 @@ import type { SysRole } from '@/api/types';
 
 const PAGE_SIZE = 10;
 
-export function useUsersQuery(page: number, keyword: string) {
+export function useUsersQuery(page: number, keyword: string, deptId: number | null) {
   return useQuery({
-    queryKey: queryKeys.users.list(page, keyword),
-    queryFn: () => fetchUsers(page, PAGE_SIZE, keyword),
+    queryKey: queryKeys.users.list(page, keyword, deptId),
+    queryFn: () => fetchUsers(page, PAGE_SIZE, keyword, deptId),
     placeholderData: keepPreviousData,
   });
 }

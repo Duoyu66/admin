@@ -9,8 +9,8 @@ export const queryKeys = {
   users: {
     all: ['users'] as const,
     lists: () => [...queryKeys.users.all, 'list'] as const,
-    list: (page: number, keyword: string) =>
-      [...queryKeys.users.lists(), { page, keyword }] as const,
+    list: (page: number, keyword: string, deptId: number | null) =>
+      [...queryKeys.users.lists(), { page, keyword, deptId }] as const,
     details: () => [...queryKeys.users.all, 'detail'] as const,
     detail: (id: number) => [...queryKeys.users.details(), id] as const,
   },

@@ -38,7 +38,7 @@ export interface AppRouteConfig {
 /** 后台业务路由（新增页面只需在此追加一项） */
 export const APP_ROUTES: AppRouteConfig[] = [
   { path: '', Component: Dashboard, title: '工作台' },
-  { path: 'users', Component: Users, title: '用户管理', group: '系统管理' },
+  { path: 'users', Component: Users, title: '人员管理', group: '系统管理' },
   { path: 'roles', Component: Roles, title: '角色管理', group: '系统管理' },
   { path: 'permissions', Component: Permissions, title: '权限配置', group: '系统管理' },
   { path: 'depts', Component: Departments, title: '部门管理', group: '系统管理' },

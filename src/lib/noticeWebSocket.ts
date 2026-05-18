@@ -1,9 +1,10 @@
-import { getToken } from '@/api/request';
+import { clearToken, getToken } from '@/api/request';
 import type { NoticeInbox } from '@/api/notice';
 
 export type NoticeWsMessage =
   | { type: 'CONNECTED' }
   | { type: 'PONG' }
+  | { type: 'FORCE_LOGOUT'; msg?: string }
   | { type: 'NOTICE_PUBLISHED'; data: NoticeInbox };
 
 export interface NoticeWebSocketOptions {
@@ -50,6 +51,10 @@ export class NoticeWebSocketClient {
       try {
         const message = JSON.parse(event.data as string) as NoticeWsMessage;
         if (message.type === 'PONG') return;
+        if (message.type === 'FORCE_LOGOUT') {
+          this.handleForceLogout();
+          return;
+        }
         this.options.onMessage(message);
       } catch {
         // ignore malformed payload
@@ -75,6 +80,17 @@ export class NoticeWebSocketClient {
     ws.onerror = () => {
       ws.close();
     };
+  }
+
+  private handleForceLogout(): void {
+    console.log('[NoticeWS] 被强制下线');
+    this.closedByUser = true;
+    this.clearReconnect();
+    this.stopHeartbeat();
+    clearToken();
+    this.ws?.close();
+    this.ws = null;
+    window.location.href = '/login';
   }
 
   disconnect(): void {

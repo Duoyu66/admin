@@ -1,12 +1,18 @@
 import { request } from './request';
 import type { PageResult, SysUser } from './types';
 
-export function fetchUsers(current: number, size: number, keyword?: string) {
+export function fetchUsers(
+  current: number,
+  size: number,
+  keyword?: string,
+  deptId?: number | null
+) {
   const q = new URLSearchParams({
     current: String(current),
     size: String(size),
   });
   if (keyword) q.set('keyword', keyword);
+  if (deptId != null) q.set('deptId', String(deptId));
   return request<PageResult<SysUser>>(`/api/users?${q}`);
 }
 

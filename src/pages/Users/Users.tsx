@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   App,
   Button,
@@ -8,13 +8,15 @@ import {
   Modal,
   Select,
   Space,
+  Spin,
   Table,
   Tag,
+  Tree,
   TreeSelect,
   Typography,
 } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
-import { PlusOutlined, SearchOutlined } from '@ant-design/icons';
+import { PlusOutlined, ReloadOutlined, SearchOutlined } from '@ant-design/icons';
 import { useAuth } from '@/hooks/useAuth';
 import {
   useAllRolesQuery,
@@ -24,18 +26,19 @@ import {
   USERS_PAGE_SIZE,
 } from '@/hooks/queries/useUsers';
 import { useDeptTreeQuery } from '@/hooks/queries/useDepartments';
-import { deptsToTreeSelect } from '@/utils/dept-tree';
+import { buildDeptMap, deptsToFilterTree, deptsToTreeSelect } from '@/utils/dept-tree';
 import { RoleCheckboxGroup } from '@/components/RoleCheckboxGroup';
 import { PageHeader } from '@/components/common/PageHeader';
 import type { SysUser } from '@/api/types';
 import styles from './Users.module.less';
 
-/** 用户管理 */
+/** 人员管理 — 左侧部门树筛选，右侧用户列表 */
 export function Users() {
   const { message, modal } = App.useApp();
   const { hasPermission } = useAuth();
   const [keyword, setKeyword] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedDeptId, setSelectedDeptId] = useState<number | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [roleModalOpen, setRoleModalOpen] = useState(false);
   const [editingId, setEditingId] = useState<number | null>(null);
@@ -44,10 +47,16 @@ export function Users() {
   const [form] = Form.useForm();
   const formRoleIds = Form.useWatch('roleIds', form) ?? [];
 
-  const { data, isFetching } = useUsersQuery(currentPage, keyword);
+  const { data, isFetching } = useUsersQuery(currentPage, keyword, selectedDeptId);
+  const { data: deptTree = [], isFetching: deptTreeLoading, refetch: refetchDeptTree } =
+    useDeptTreeQuery();
   const { data: roles = [] } = useAllRolesQuery();
-  const { data: deptTree = [] } = useDeptTreeQuery();
   const deptTreeData = deptsToTreeSelect(deptTree);
+  const filterTreeData = useMemo(() => deptsToFilterTree(deptTree), [deptTree]);
+  const deptMap = useMemo(() => buildDeptMap(deptTree), [deptTree]);
+  const selectedDeptName =
+    selectedDeptId != null ? deptMap.get(selectedDeptId)?.deptName : null;
+
   const { data: editingUser } = useUserDetailQuery(editingId, modalOpen && editingId != null);
   const { data: roleTarget } = useUserDetailQuery(
     roleTargetId,
@@ -84,7 +93,11 @@ export function Users() {
   const openCreate = () => {
     setEditingId(null);
     form.resetFields();
-    form.setFieldsValue({ status: 1, roleIds: [], deptId: undefined });
+    form.setFieldsValue({
+      status: 1,
+      roleIds: [],
+      deptId: selectedDeptId ?? undefined,
+    });
     setModalOpen(true);
   };
 
@@ -201,45 +214,110 @@ export function Users() {
 
   return (
     <>
-      <PageHeader title="用户管理" description="维护系统用户、分配角色与账号状态" />
+      <PageHeader
+        title="人员管理"
+        description="按组织机构筛选人员，维护账号、角色与状态"
+      />
 
-      <div className="page-toolbar">
-        <Input
-          allowClear
-          prefix={<SearchOutlined />}
-          placeholder="搜索用户名、昵称、邮箱..."
-          value={keyword}
-          onChange={(e) => {
-            setKeyword(e.target.value);
-            setCurrentPage(1);
-          }}
-          style={{ width: 280 }}
-        />
-        <span className="page-toolbar-spacer" />
-        {hasPermission('sys:user:add') && (
-          <Button type="primary" icon={<PlusOutlined />} onClick={openCreate}>
-            新增用户
-          </Button>
-        )}
+      <div className={styles.layout}>
+        <aside className={styles.sider}>
+          <Card
+            variant="borderless"
+            className={styles.siderCard}
+            title="组织机构"
+            extra={
+              <Button
+                type="text"
+                size="small"
+                icon={<ReloadOutlined />}
+                aria-label="刷新部门树"
+                onClick={() => refetchDeptTree()}
+              />
+            }
+          >
+            <Button
+              type={selectedDeptId == null ? 'primary' : 'text'}
+              className={styles.allBtn}
+              onClick={() => {
+                setSelectedDeptId(null);
+                setCurrentPage(1);
+              }}
+            >
+              全部人员
+            </Button>
+            <Spin spinning={deptTreeLoading}>
+              <div className={`dept-tree-panel ${styles.treeWrap}`}>
+                {filterTreeData.length > 0 ? (
+                  <Tree
+                    blockNode
+                    defaultExpandAll
+                    treeData={filterTreeData}
+                    selectedKeys={selectedDeptId != null ? [selectedDeptId] : []}
+                    onSelect={(keys) => {
+                      const key = keys[0];
+                      if (key == null) return;
+                      setSelectedDeptId(Number(key));
+                      setCurrentPage(1);
+                    }}
+                  />
+                ) : (
+                  !deptTreeLoading && (
+                    <div style={{ padding: 16, textAlign: 'center', color: 'var(--text-muted)' }}>
+                      暂无部门，请先在部门管理中维护
+                    </div>
+                  )
+                )}
+              </div>
+            </Spin>
+          </Card>
+        </aside>
+
+        <div className={styles.main}>
+          <div className="page-toolbar">
+            <Input
+              allowClear
+              prefix={<SearchOutlined />}
+              placeholder="搜索用户名、昵称、邮箱..."
+              value={keyword}
+              onChange={(e) => {
+                setKeyword(e.target.value);
+                setCurrentPage(1);
+              }}
+              style={{ width: 260 }}
+            />
+            {selectedDeptName && (
+              <span className={styles.filterHint}>
+                当前部门：<Typography.Text strong>{selectedDeptName}</Typography.Text>
+                （含下级部门）
+              </span>
+            )}
+            <span className="page-toolbar-spacer" />
+            {hasPermission('sys:user:add') && (
+              <Button type="primary" icon={<PlusOutlined />} onClick={openCreate}>
+                新增用户
+              </Button>
+            )}
+          </div>
+
+          <Card variant="borderless" styles={{ body: { padding: 0 } }} style={{ borderRadius: 12 }}>
+            <Table<SysUser>
+              rowKey="id"
+              columns={columns}
+              dataSource={list}
+              loading={isFetching}
+              scroll={{ x: 960 }}
+              pagination={{
+                current: currentPage,
+                pageSize: USERS_PAGE_SIZE,
+                total,
+                showSizeChanger: false,
+                showTotal: (t) => `共 ${t} 条`,
+                onChange: setCurrentPage,
+              }}
+            />
+          </Card>
+        </div>
       </div>
-
-      <Card variant="borderless" styles={{ body: { padding: 0 } }} style={{ borderRadius: 12 }}>
-        <Table<SysUser>
-          rowKey="id"
-          columns={columns}
-          dataSource={list}
-          loading={isFetching}
-          scroll={{ x: 960 }}
-          pagination={{
-            current: currentPage,
-            pageSize: USERS_PAGE_SIZE,
-            total,
-            showSizeChanger: false,
-            showTotal: (t) => `共 ${t} 条`,
-            onChange: setCurrentPage,
-          }}
-        />
-      </Card>
 
       <Modal
         title={editingId ? '编辑用户' : '新增用户'}
