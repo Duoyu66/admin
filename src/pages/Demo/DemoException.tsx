@@ -3,6 +3,7 @@ import { Button, Card, Result, Segmented, Space } from 'antd';
 import { DisconnectOutlined, HomeOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { PageHeader } from '@/components/common/PageHeader';
+import img404 from '@/img/404.png';
 import styles from './demo-shared.module.less';
 import exceptionStyles from './DemoException.module.less';
 
@@ -40,16 +41,24 @@ export function DemoException() {
         />
       );
     }
+
+    if (active === '404') {
+      return (
+        <Result
+          icon={<img src={img404} alt="" className={exceptionStyles.notFoundImg} />}
+          title="404"
+          subTitle="抱歉，您访问的页面不存在。"
+          extra={extra}
+        />
+      );
+    }
+
     return (
       <Result
         status={active}
         title={active}
         subTitle={
-          active === '403'
-            ? '抱歉，您无权访问此页面。'
-            : active === '404'
-              ? '抱歉，您访问的页面不存在。'
-              : '抱歉，服务器出错了。'
+          active === '403' ? '抱歉，您无权访问此页面。' : '抱歉，服务器出错了。'
         }
         extra={extra}
       />

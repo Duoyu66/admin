@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from 'react';
 import { App, Button, Card, Typography } from 'antd';
 import { CopyOutlined, CodeOutlined } from '@ant-design/icons';
+import { DemoCodeBlock } from './DemoCodeBlock';
 import styles from './DemoExampleCard.module.less';
 
 export interface DemoExampleCardProps {
@@ -63,7 +64,7 @@ export function DemoExampleCard({
       </Button>
       {showCode && (
         <>
-          <pre className={styles.codeBlock}>{code.trim()}</pre>
+          <DemoCodeBlock code={code} />
           <div className={styles.codeActions}>
             <Button type="text" size="small" icon={<CopyOutlined />} onClick={copyCode}>
               复制

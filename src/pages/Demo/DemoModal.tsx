@@ -1,7 +1,8 @@
 import { useRef, useState } from 'react';
-import { App, Button, Col, Form, Input, Modal, Row, Space } from 'antd';
+import { App, Button, Form, Input, Modal, Space } from 'antd';
 import { PageHeader } from '@/components/common/PageHeader';
 import { DemoExampleCard } from '@/components/Demo/DemoExampleCard';
+import { DemoMasonry, DemoMasonryItem } from '@/components/Demo/DemoMasonry';
 import {
   CODE_AUTO_HEIGHT,
   CODE_BASIC,
@@ -58,8 +59,8 @@ export function DemoModal() {
         description="Modal 常用能力演示，每个示例可展开查看并复制使用代码"
       />
 
-      <Row gutter={[16, 16]} className={styles.grid}>
-        <Col xs={24} sm={12} lg={6}>
+      <DemoMasonry>
+        <DemoMasonryItem>
           <DemoExampleCard
             title="基本使用"
             description="一个基础的弹窗示例"
@@ -77,9 +78,9 @@ export function DemoModal() {
               <p>这是一个基础的 Modal 示例。</p>
             </Modal>
           </DemoExampleCard>
-        </Col>
+        </DemoMasonryItem>
 
-        <Col xs={24} sm={12} lg={6}>
+        <DemoMasonryItem>
           <DemoExampleCard
             title="指定容器+关闭后不销毁"
             description="在内容区域打开弹窗的示例"
@@ -102,9 +103,9 @@ export function DemoModal() {
               </Modal>
             </div>
           </DemoExampleCard>
-        </Col>
+        </DemoMasonryItem>
 
-        <Col xs={24} sm={12} lg={6}>
+        <DemoMasonryItem>
           <DemoExampleCard
             title="内容高度自适应"
             description="可根据内容并自动调整高度"
@@ -128,9 +129,9 @@ export function DemoModal() {
               />
             </Modal>
           </DemoExampleCard>
-        </Col>
+        </DemoMasonryItem>
 
-        <Col xs={24} sm={12} lg={6}>
+        <DemoMasonryItem>
           <DemoExampleCard
             title="可拖拽示例"
             description="通过 modalRender 与标题栏拖拽实现"
@@ -166,9 +167,9 @@ export function DemoModal() {
               <p>拖动标题栏可移动弹窗位置。</p>
             </Modal>
           </DemoExampleCard>
-        </Col>
+        </DemoMasonryItem>
 
-        <Col xs={24} sm={12} lg={6}>
+        <DemoMasonryItem>
           <DemoExampleCard
             title="动态配置示例"
             description="通过 setState 动态调整弹窗数据"
@@ -191,9 +192,9 @@ export function DemoModal() {
               <p>标题由外部按钮在打开前动态设置。</p>
             </Modal>
           </DemoExampleCard>
-        </Col>
+        </DemoMasonryItem>
 
-        <Col xs={24} sm={12} lg={6}>
+        <DemoMasonryItem>
           <DemoExampleCard
             title="内外数据共享示例"
             description="通过共享 sharedData 来进行数据交互"
@@ -224,9 +225,9 @@ export function DemoModal() {
               />
             </Modal>
           </DemoExampleCard>
-        </Col>
+        </DemoMasonryItem>
 
-        <Col xs={24} sm={12} lg={6}>
+        <DemoMasonryItem>
           <DemoExampleCard
             title="表单弹窗示例"
             description="弹窗与表单结合"
@@ -262,9 +263,9 @@ export function DemoModal() {
               </Form>
             </Modal>
           </DemoExampleCard>
-        </Col>
+        </DemoMasonryItem>
 
-        <Col xs={24} sm={12} lg={6}>
+        <DemoMasonryItem>
           <DemoExampleCard
             title="嵌套弹窗示例"
             description="在已经打开的弹窗中再次打开弹窗"
@@ -302,9 +303,9 @@ export function DemoModal() {
               </Modal>
             </Modal>
           </DemoExampleCard>
-        </Col>
+        </DemoMasonryItem>
 
-        <Col xs={24} sm={12} lg={6}>
+        <DemoMasonryItem>
           <DemoExampleCard
             title="遮罩模糊示例"
             description="遮罩层应用类似毛玻璃的模糊效果"
@@ -329,9 +330,9 @@ export function DemoModal() {
               <p>遮罩使用 backdrop-filter 实现毛玻璃效果。</p>
             </Modal>
           </DemoExampleCard>
-        </Col>
+        </DemoMasonryItem>
 
-        <Col xs={24} sm={12} lg={6}>
+        <DemoMasonryItem>
           <DemoExampleCard
             title="轻量提示弹窗"
             description="通过快捷方法创建动态提示弹窗，适合轻量提示、确认、输入等"
@@ -400,8 +401,8 @@ export function DemoModal() {
               </Button>
             </Space>
           </DemoExampleCard>
-        </Col>
-      </Row>
+        </DemoMasonryItem>
+      </DemoMasonry>
     </>
   );
 }

@@ -101,6 +101,82 @@
   overflow-x: hidden;
   border-inline-end: none !important;
   padding: 8px;
+  background: transparent !important;
+
+  &:global(.ant-menu.ant-menu-root) {
+    background: transparent !important;
+  }
+
+  :global {
+    .ant-menu-item,
+    .ant-menu-submenu-title {
+      margin-inline: 0;
+      margin-block: 2px;
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      border-radius: var(--radius-md);
+      color: var(--text-secondary);
+      transition:
+        color @transition-fast,
+        background @transition-fast;
+
+      &:hover {
+        color: var(--text-primary);
+        background: var(--bg-hover) !important;
+      }
+    }
+
+    .ant-menu-item .ant-menu-item-icon,
+    .ant-menu-submenu-title .ant-menu-item-icon {
+      font-size: 16px;
+      min-width: 16px;
+      color: inherit;
+      transition: color @transition-fast;
+    }
+
+    .ant-menu-item-selected {
+      color: var(--text-primary) !important;
+      font-weight: 500;
+      background: var(--bg-active) !important;
+
+      .ant-menu-item-icon {
+        color: var(--color-primary-active);
+      }
+    }
+
+    .ant-menu-submenu-selected > .ant-menu-submenu-title,
+    .ant-menu-submenu-open > .ant-menu-submenu-title {
+      color: var(--text-primary);
+      font-weight: 500;
+
+      .ant-menu-item-icon {
+        color: var(--text-primary);
+      }
+    }
+
+    .ant-menu-sub.ant-menu-inline {
+      background: transparent !important;
+
+      > .ant-menu-item {
+        height: 36px;
+        line-height: 36px;
+        padding-inline-start: 44px !important;
+      }
+    }
+
+    .ant-menu-submenu-arrow {
+      color: var(--text-muted);
+      opacity: 0.9;
+    }
+
+    &.ant-menu-inline-collapsed {
+      .ant-menu-item,
+      .ant-menu-submenu-title {
+        padding-inline: calc(50% - 12px);
+      }
+    }
+  }
 }
 
 // 顶栏
@@ -383,23 +459,27 @@
   color: var(--text-muted);
 }
 
-// Message 轻提示 — 半透明毛玻璃（随主题色）
+// Message 轻提示 — 半透明（不用 backdrop-filter，避免与 fade 动画叠加重绘闪烁）
 body .ant-message {
   --ant-message-content-bg: transparent !important;
 }
 
 body .ant-message .ant-message-notice,
 body .ant-message-notice {
-  background: color-mix(in srgb, var(--bg-container) 38%, transparent) !important;
-  backdrop-filter: blur(20px) saturate(1.25) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(1.25) !important;
-  border: 1px solid color-mix(in srgb, var(--border-default) 45%, transparent) !important;
-  box-shadow: 0 8px 32px color-mix(in srgb, var(--text-primary) 10%, transparent) !important;
+  background: color-mix(in srgb, var(--bg-container) 88%, transparent) !important;
+  border: 1px solid color-mix(in srgb, var(--border-default) 60%, transparent) !important;
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--text-primary) 8%, transparent) !important;
 }
 
 html[data-theme='dark'] body .ant-message .ant-message-notice,
 html[data-theme='dark'] body .ant-message-notice {
-  background: color-mix(in srgb, var(--bg-container) 55%, transparent) !important;
+  background: color-mix(in srgb, var(--bg-container) 90%, transparent) !important;
+}
+
+// Notification — 同样避免动画期毛玻璃闪烁
+body .ant-notification .ant-notification-notice {
+  background: color-mix(in srgb, var(--bg-container) 92%, transparent) !important;
+  border: 1px solid color-mix(in srgb, var(--border-default) 55%, transparent) !important;
 }
 
 @media (max-width: 768px) {

@@ -13,6 +13,7 @@ import {
   Switch,
 } from 'antd';
 import { PageHeader } from '@/components/common/PageHeader';
+import { DemoMasonry, DemoMasonryItem } from '@/components/Demo/DemoMasonry';
 import styles from './demo-shared.module.less';
 
 /** 表单组件演示 */
@@ -23,6 +24,8 @@ export function DemoForm() {
     <>
       <PageHeader title="表单" description="Ant Design Form、Input、Select 等常用表单控件" />
 
+      <DemoMasonry>
+        <DemoMasonryItem>
       <Card title="基础表单" className={styles.section} bordered={false}>
         <Form form={form} layout="vertical" initialValues={{ status: 1, notify: true }}>
           <Row gutter={16}>
@@ -80,7 +83,9 @@ export function DemoForm() {
           </div>
         </Form>
       </Card>
+        </DemoMasonryItem>
 
+        <DemoMasonryItem>
       <Card title="水平布局" className={styles.section} bordered={false}>
         <Form layout="horizontal" labelCol={{ span: 6 }} wrapperCol={{ span: 16 }}>
           <Form.Item label="用户名">
@@ -91,6 +96,8 @@ export function DemoForm() {
           </Form.Item>
         </Form>
       </Card>
+        </DemoMasonryItem>
+      </DemoMasonry>
     </>
   );
 }

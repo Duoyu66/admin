@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import CharacterCount from '@tiptap/extension-character-count';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
@@ -44,6 +44,8 @@ export function RichTextEditor({
     [placeholder, maxLength],
   );
 
+  const [, tick] = useState(0);
+
   const editor = useEditor(
     {
       extensions,
@@ -51,10 +53,20 @@ export function RichTextEditor({
       editable: !readOnly,
       onUpdate: ({ editor: ed }) => {
         onChange?.(ed.getHTML());
+        tick((n) => n + 1);
       },
     },
     [extensions, readOnly],
   );
+
+  useEffect(() => {
+    if (!editor) return;
+    const refresh = () => tick((n) => n + 1);
+    editor.on('transaction', refresh);
+    return () => {
+      editor.off('transaction', refresh);
+    };
+  }, [editor]);
 
   useEffect(() => {
     if (!editor) return;
@@ -68,6 +80,7 @@ export function RichTextEditor({
     editor.commands.setContent(value, false);
   }, [editor, value]);
 
+  void tick;
   const characters = editor?.storage.characterCount.characters() ?? 0;
 
   return (

@@ -16,6 +16,7 @@ import { MonitorDatasource } from '@/pages/Monitor/MonitorDatasource';
 import { MonitorCache } from '@/pages/Monitor/MonitorCache';
 import { MonitorJob } from '@/pages/Monitor/MonitorJob';
 import { Profile } from '@/pages/Profile/Profile';
+import { Settings } from '@/pages/Settings/Settings';
 import { DemoForm } from '@/pages/Demo/DemoForm';
 import { DemoTable } from '@/pages/Demo/DemoTable';
 import { DemoModal } from '@/pages/Demo/DemoModal';
@@ -55,6 +56,7 @@ export default function App() {
           <Route path="monitor/cache" element={<MonitorCache />} />
           <Route path="monitor/job" element={<MonitorJob />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="settings" element={<Settings />} />
           <Route path="demo/form" element={<DemoForm />} />
           <Route path="demo/table" element={<DemoTable />} />
           <Route path="demo/modal" element={<DemoModal />} />

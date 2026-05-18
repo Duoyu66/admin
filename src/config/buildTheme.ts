@@ -53,10 +53,10 @@ export function buildAntdTheme(
       fontFamily: APP_FONT_FAMILY,
       fontSize: 14,
       controlHeight: 36,
-      motion: false,
-      motionDurationMid: '0s',
-      motionDurationSlow: '0s',
-      motionDurationFast: '0s',
+      motion: true,
+      motionDurationMid: '0.28s',
+      motionDurationSlow: '0.32s',
+      motionDurationFast: '0.2s',
     },
     components: {
       Layout: {
@@ -108,7 +108,13 @@ export function buildAntdTheme(
         itemSelectedColor: c.primaryActive,
         inkBarColor: c.primary,
       },
-      Message: { contentBg: 'transparent' },
+      Message: {
+        contentBg: 'transparent',
+        zIndexPopup: 2010,
+      },
+      Notification: {
+        zIndexPopup: 2010,
+      },
       Breadcrumb: {
         lastItemColor: c.text,
         itemColor: c.textSecondary,
@@ -132,14 +138,15 @@ export function buildAntdTheme(
 export function getMessageGlassStyle(mode: ColorMode, palette: ThemePalette) {
   const glassBg =
     mode === 'dark'
-      ? 'color-mix(in srgb, var(--bg-container) 55%, transparent)'
-      : 'color-mix(in srgb, var(--bg-container) 38%, transparent)';
+      ? 'color-mix(in srgb, var(--bg-container) 90%, transparent)'
+      : 'color-mix(in srgb, var(--bg-container) 88%, transparent)';
   return {
     background: glassBg,
-    backdropFilter: 'blur(20px) saturate(1.25)',
-    WebkitBackdropFilter: 'blur(20px) saturate(1.25)',
-    border: `1px solid color-mix(in srgb, ${palette.border} 45%, transparent)`,
-    boxShadow: mode === 'dark' ? '0 8px 32px rgba(0, 0, 0, 0.35)' : '0 8px 32px rgba(31, 46, 36, 0.1)',
+    border: `1px solid color-mix(in srgb, ${palette.border} 55%, transparent)`,
+    boxShadow:
+      mode === 'dark'
+        ? '0 6px 20px rgba(0, 0, 0, 0.28)'
+        : '0 6px 20px rgba(31, 46, 36, 0.08)',
   };
 }
 

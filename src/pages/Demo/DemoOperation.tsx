@@ -8,6 +8,7 @@ import {
   PlusOutlined,
 } from '@ant-design/icons';
 import { PageHeader } from '@/components/common/PageHeader';
+import { DemoMasonry, DemoMasonryItem } from '@/components/Demo/DemoMasonry';
 import styles from './demo-shared.module.less';
 
 /** 操作类组件演示 */
@@ -25,6 +26,8 @@ export function DemoOperation() {
     <>
       <PageHeader title="操作" description="Button、Dropdown、Popconfirm、Tooltip" />
 
+      <DemoMasonry>
+        <DemoMasonryItem>
       <Card title="按钮 Button" className={styles.section} bordered={false}>
         <Space wrap className={styles.gap}>
           <Button type="primary" icon={<PlusOutlined />}>
@@ -40,13 +43,17 @@ export function DemoOperation() {
           <Button disabled>禁用</Button>
         </Space>
       </Card>
+        </DemoMasonryItem>
 
+        <DemoMasonryItem>
       <Card title="下拉菜单 Dropdown" className={styles.section} bordered={false}>
         <Dropdown menu={{ items: menuItems }} trigger={['click']}>
           <Button icon={<MoreOutlined />}>更多操作</Button>
         </Dropdown>
       </Card>
+        </DemoMasonryItem>
 
+        <DemoMasonryItem>
       <Card title="气泡确认 Popconfirm" className={styles.section} bordered={false}>
         <Popconfirm
           title="确定删除该记录？"
@@ -58,7 +65,9 @@ export function DemoOperation() {
           </Button>
         </Popconfirm>
       </Card>
+        </DemoMasonryItem>
 
+        <DemoMasonryItem>
       <Card title="文字提示 Tooltip" className={styles.section} bordered={false}>
         <Space>
           <Tooltip title="编辑当前行">
@@ -69,6 +78,8 @@ export function DemoOperation() {
           </Tooltip>
         </Space>
       </Card>
+        </DemoMasonryItem>
+      </DemoMasonry>
     </>
   );
 }

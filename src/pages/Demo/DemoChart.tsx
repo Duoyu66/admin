@@ -1,6 +1,7 @@
-import { Card, Col, Row } from 'antd';
+import { Card } from 'antd';
 import { Column, Line, Pie } from '@ant-design/plots';
 import { PageHeader } from '@/components/common/PageHeader';
+import { DemoMasonry, DemoMasonryItem } from '@/components/Demo/DemoMasonry';
 import { appColors } from '@/config/theme';
 import styles from './demo-shared.module.less';
 
@@ -38,8 +39,8 @@ export function DemoChart() {
     <>
       <PageHeader title="报表" description="@ant-design/plots 折线、饼图、柱状图" />
 
-      <Row gutter={[16, 16]}>
-        <Col xs={24} lg={14}>
+      <DemoMasonry>
+        <DemoMasonryItem>
           <Card title="折线图" className={styles.section} bordered={false}>
             <Line
               data={lineData}
@@ -51,8 +52,9 @@ export function DemoChart() {
               axis={{ y: { title: false, ...axis }, x: { title: false, ...axis } }}
             />
           </Card>
-        </Col>
-        <Col xs={24} lg={10}>
+        </DemoMasonryItem>
+
+        <DemoMasonryItem>
           <Card title="饼图" className={styles.section} bordered={false}>
             <Pie
               data={pieData}
@@ -64,8 +66,9 @@ export function DemoChart() {
               color={[appColors.primary, appColors.info, appColors.warning, appColors.success]}
             />
           </Card>
-        </Col>
-        <Col span={24}>
+        </DemoMasonryItem>
+
+        <DemoMasonryItem>
           <Card title="柱状图" className={styles.section} bordered={false}>
             <Column
               data={columnData}
@@ -77,8 +80,8 @@ export function DemoChart() {
               axis={{ y: { title: false, ...axis }, x: { title: false, ...axis } }}
             />
           </Card>
-        </Col>
-      </Row>
+        </DemoMasonryItem>
+      </DemoMasonry>
     </>
   );
 }
