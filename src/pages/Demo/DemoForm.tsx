@@ -26,7 +26,7 @@ export function DemoForm() {
 
       <DemoMasonry>
         <DemoMasonryItem>
-      <Card title="基础表单" className={styles.section} bordered={false}>
+      <Card title="基础表单" className={styles.section} variant="borderless">
         <Form form={form} layout="vertical" initialValues={{ status: 1, notify: true }}>
           <Row gutter={16}>
             <Col xs={24} md={12}>
@@ -86,7 +86,7 @@ export function DemoForm() {
         </DemoMasonryItem>
 
         <DemoMasonryItem>
-      <Card title="水平布局" className={styles.section} bordered={false}>
+      <Card title="水平布局" className={styles.section} variant="borderless">
         <Form layout="horizontal" labelCol={{ span: 6 }} wrapperCol={{ span: 16 }}>
           <Form.Item label="用户名">
             <Input placeholder="horizontal" />

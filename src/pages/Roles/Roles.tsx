@@ -183,7 +183,7 @@ export function Roles() {
         )}
       </div>
 
-      <Card bordered={false} styles={{ body: { padding: 0 } }} style={{ borderRadius: 12 }}>
+      <Card variant="borderless" styles={{ body: { padding: 0 } }} style={{ borderRadius: 12 }}>
         <Table<SysRole>
           rowKey="id"
           columns={columns}

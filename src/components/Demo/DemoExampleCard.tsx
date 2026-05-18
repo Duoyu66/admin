@@ -35,7 +35,7 @@ export function DemoExampleCard({
   return (
     <Card
       className={styles.card}
-      bordered={false}
+      variant="borderless"
       title={
         <div className={styles.head}>
           <div>

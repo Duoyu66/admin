@@ -301,13 +301,68 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: 8px;
+  margin-bottom: 12px;
+
+  .ant-btn {
+    height: 28px;
+    padding-inline: 10px;
+    font-size: 13px;
+    line-height: 1.2;
+  }
+
+  .ant-btn-sm {
+    height: 24px;
+    padding-inline: 8px;
+    font-size: 12px;
+  }
+
+  .ant-btn-icon-only {
+    width: 28px;
+    padding-inline: 0;
+  }
+
+  .ant-input-affix-wrapper,
+  .ant-select-selector {
+    height: 28px !important;
+    font-size: 13px !important;
+  }
+
+  .ant-input-affix-wrapper {
+    padding: 2px 8px;
+  }
+
+  .ant-select-single .ant-select-selector .ant-select-selection-item,
+  .ant-select-single .ant-select-selector .ant-select-selection-placeholder {
+    line-height: 26px !important;
+  }
 }
 
 .page-toolbar-spacer {
   flex: 1;
   min-width: 8px;
+}
+
+// 表格 — 仅单元格紧凑（不影响表格外工具栏）
+.ant-table-wrapper {
+  .ant-table {
+    font-size: 14px;
+  }
+
+  .ant-table-thead > tr > th {
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .ant-table-pagination {
+    margin: 12px 12px !important;
+  }
+
+  .ant-table-cell .ant-btn-link {
+    height: auto;
+    padding: 0 4px;
+    font-size: 14px;
+  }
 }
 
 // 表格操作列

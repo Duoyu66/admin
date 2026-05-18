@@ -42,6 +42,7 @@ export class NoticeWebSocketClient {
     ws.onopen = () => {
       this.reconnectAttempts = 0;
       this.startHeartbeat();
+      console.log('[NoticeWS] 已连接');
       this.options.onOpen?.();
     };
 
@@ -55,11 +56,18 @@ export class NoticeWebSocketClient {
       }
     };
 
-    ws.onclose = () => {
+    ws.onclose = (event) => {
       this.stopHeartbeat();
       this.ws = null;
+      const willReconnect = !this.closedByUser && !!getToken();
+      console.log('[NoticeWS] 已断开', {
+        code: event.code,
+        reason: event.reason || undefined,
+        byUser: this.closedByUser,
+        willReconnect,
+      });
       this.options.onClose?.();
-      if (!this.closedByUser) {
+      if (willReconnect) {
         this.scheduleReconnect();
       }
     };

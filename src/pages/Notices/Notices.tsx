@@ -162,7 +162,7 @@ export function Notices() {
         )}
       </div>
 
-      <Card bordered={false} styles={{ body: { padding: 0 } }} style={{ borderRadius: 12 }}>
+      <Card variant="borderless" styles={{ body: { padding: 0 } }} style={{ borderRadius: 12 }}>
         <Table<SysNotice>
           rowKey="id"
           columns={columns}

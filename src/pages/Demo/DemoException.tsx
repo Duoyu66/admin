@@ -72,7 +72,7 @@ export function DemoException() {
         description="403 / 404 / 500 与离线场景的 Result 缺省页展示"
       />
 
-      <Card className={styles.section} bordered={false}>
+      <Card className={styles.section} variant="borderless">
         <Segmented
           className={exceptionStyles.segmented}
           options={OPTIONS}

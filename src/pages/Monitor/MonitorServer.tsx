@@ -21,7 +21,7 @@ export function MonitorServer() {
       <Spin spinning={isFetching && !data}>
         {data && (
           <>
-            <Card bordered={false} className={styles.card} title="服务器信息">
+            <Card variant="borderless" className={styles.card} title="服务器信息">
               <Descriptions column={{ xs: 1, sm: 2, lg: 3 }} size="small">
                 <Descriptions.Item label="主机名">{data.computerName}</Descriptions.Item>
                 <Descriptions.Item label="服务器 IP">{data.serverIp}</Descriptions.Item>
@@ -43,7 +43,7 @@ export function MonitorServer() {
 
             <Row gutter={[16, 16]} className={styles.metricRow}>
               <Col xs={24} md={8}>
-                <Card bordered={false} className={styles.card} title={`CPU（${data.cpu.cores} 核）`}>
+                <Card variant="borderless" className={styles.card} title={`CPU（${data.cpu.cores} 核）`}>
                   <Progress
                     type="dashboard"
                     percent={data.cpu.usagePercent}
@@ -52,7 +52,7 @@ export function MonitorServer() {
                 </Card>
               </Col>
               <Col xs={24} md={8}>
-                <Card bordered={false} className={styles.card} title="系统内存">
+                <Card variant="borderless" className={styles.card} title="系统内存">
                   <Progress
                     type="dashboard"
                     percent={data.memory.usagePercent}
@@ -64,7 +64,7 @@ export function MonitorServer() {
                 </Card>
               </Col>
               <Col xs={24} md={8}>
-                <Card bordered={false} className={styles.card} title="JVM 堆内存">
+                <Card variant="borderless" className={styles.card} title="JVM 堆内存">
                   <Progress
                     type="dashboard"
                     percent={data.jvm.heapUsagePercent}
@@ -78,7 +78,7 @@ export function MonitorServer() {
               </Col>
             </Row>
 
-            <Card bordered={false} className={styles.card} title="磁盘状态">
+            <Card variant="borderless" className={styles.card} title="磁盘状态">
               <Table
                 rowKey="mount"
                 size="small"

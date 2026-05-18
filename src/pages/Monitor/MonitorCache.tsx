@@ -28,23 +28,23 @@ export function MonitorCache() {
 
             <Row gutter={[16, 16]} className={styles.metricRow}>
               <Col xs={24} sm={8}>
-                <Card bordered={false} className={styles.statCard}>
+                <Card variant="borderless" className={styles.statCard}>
                   <Statistic title="在线会话" value={data.onlineSessionCount} />
                 </Card>
               </Col>
               <Col xs={24} sm={8}>
-                <Card bordered={false} className={styles.statCard}>
+                <Card variant="borderless" className={styles.statCard}>
                   <Statistic title="已强退令牌" value={data.tokenBlacklistCount} />
                 </Card>
               </Col>
               <Col xs={24} sm={8}>
-                <Card bordered={false} className={styles.statCard}>
+                <Card variant="borderless" className={styles.statCard}>
                   <Statistic title="WebSocket 连接" value={data.websocketConnectionCount} />
                 </Card>
               </Col>
             </Row>
 
-            <Card bordered={false} className={styles.card} title="JVM 内存区域">
+            <Card variant="borderless" className={styles.card} title="JVM 内存区域">
               <Table
                 rowKey="name"
                 size="small"

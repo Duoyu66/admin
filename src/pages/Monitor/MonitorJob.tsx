@@ -33,7 +33,7 @@ export function MonitorJob() {
         <Button onClick={() => refetch()}>刷新</Button>
       </div>
 
-      <Card bordered={false} className={styles.card} styles={{ body: { padding: 0 } }}>
+      <Card variant="borderless" className={styles.card} styles={{ body: { padding: 0 } }}>
         <Spin spinning={isFetching}>
           <Table<JobMonitor>
             rowKey="jobId"

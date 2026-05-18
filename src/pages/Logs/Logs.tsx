@@ -101,7 +101,7 @@ export function Logs() {
       children: (
         <>
           {toolbar}
-          <Card bordered={false} styles={{ body: { padding: 0 } }} style={{ borderRadius: 12 }}>
+          <Card variant="borderless" styles={{ body: { padding: 0 } }} style={{ borderRadius: 12 }}>
             <Table<SysOperLog>
               rowKey="id"
               columns={operColumns}
@@ -129,7 +129,7 @@ export function Logs() {
       children: (
         <>
           {toolbar}
-          <Card bordered={false} styles={{ body: { padding: 0 } }} style={{ borderRadius: 12 }}>
+          <Card variant="borderless" styles={{ body: { padding: 0 } }} style={{ borderRadius: 12 }}>
             <Table<SysLoginLog>
               rowKey="id"
               columns={loginColumns}

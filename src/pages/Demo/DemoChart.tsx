@@ -41,7 +41,7 @@ export function DemoChart() {
 
       <DemoMasonry>
         <DemoMasonryItem>
-          <Card title="折线图" className={styles.section} bordered={false}>
+          <Card title="折线图" className={styles.section} variant="borderless">
             <Line
               data={lineData}
               xField="month"
@@ -55,7 +55,7 @@ export function DemoChart() {
         </DemoMasonryItem>
 
         <DemoMasonryItem>
-          <Card title="饼图" className={styles.section} bordered={false}>
+          <Card title="饼图" className={styles.section} variant="borderless">
             <Pie
               data={pieData}
               angleField="value"
@@ -69,7 +69,7 @@ export function DemoChart() {
         </DemoMasonryItem>
 
         <DemoMasonryItem>
-          <Card title="柱状图" className={styles.section} bordered={false}>
+          <Card title="柱状图" className={styles.section} variant="borderless">
             <Column
               data={columnData}
               xField="dept"

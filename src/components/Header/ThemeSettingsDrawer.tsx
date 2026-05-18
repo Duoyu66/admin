@@ -36,7 +36,7 @@ export function ThemeSettingsDrawer({ open, onClose }: ThemeSettingsDrawerProps)
     <Drawer
       title="主题设置"
       placement="right"
-      width={360}
+      size={360}
       open={open}
       onClose={onClose}
       destroyOnHidden

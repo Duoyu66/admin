@@ -157,7 +157,7 @@ export function Departments() {
         )}
       </div>
 
-      <Card bordered={false} styles={{ body: { padding: 0 } }} style={{ borderRadius: 12 }}>
+      <Card variant="borderless" styles={{ body: { padding: 0 } }} style={{ borderRadius: 12 }}>
         <Spin spinning={isFetching}>
           <div className={`dept-tree-panel ${styles.panel}`}>
             {treeData.length > 0 ? (

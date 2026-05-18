@@ -28,7 +28,7 @@ export function DemoOperation() {
 
       <DemoMasonry>
         <DemoMasonryItem>
-      <Card title="按钮 Button" className={styles.section} bordered={false}>
+      <Card title="按钮 Button" className={styles.section} variant="borderless">
         <Space wrap className={styles.gap}>
           <Button type="primary" icon={<PlusOutlined />}>
             主要按钮
@@ -46,7 +46,7 @@ export function DemoOperation() {
         </DemoMasonryItem>
 
         <DemoMasonryItem>
-      <Card title="下拉菜单 Dropdown" className={styles.section} bordered={false}>
+      <Card title="下拉菜单 Dropdown" className={styles.section} variant="borderless">
         <Dropdown menu={{ items: menuItems }} trigger={['click']}>
           <Button icon={<MoreOutlined />}>更多操作</Button>
         </Dropdown>
@@ -54,7 +54,7 @@ export function DemoOperation() {
         </DemoMasonryItem>
 
         <DemoMasonryItem>
-      <Card title="气泡确认 Popconfirm" className={styles.section} bordered={false}>
+      <Card title="气泡确认 Popconfirm" className={styles.section} variant="borderless">
         <Popconfirm
           title="确定删除该记录？"
           description="删除后不可恢复"
@@ -68,7 +68,7 @@ export function DemoOperation() {
         </DemoMasonryItem>
 
         <DemoMasonryItem>
-      <Card title="文字提示 Tooltip" className={styles.section} bordered={false}>
+      <Card title="文字提示 Tooltip" className={styles.section} variant="borderless">
         <Space>
           <Tooltip title="编辑当前行">
             <Button icon={<EditOutlined />} />

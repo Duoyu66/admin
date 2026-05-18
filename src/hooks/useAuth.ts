@@ -48,6 +48,7 @@ export function useAuth() {
     onSettled: () => {
       clearToken();
       queryClient.removeQueries({ queryKey: queryKeys.auth.all });
+      queryClient.removeQueries({ queryKey: queryKeys.notices.all });
     },
   });
 

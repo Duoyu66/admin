@@ -1,7 +1,146 @@
-.body {
-  margin-top: 8px;
+@import '../../styles/variables.less';
+
+@modal-radius: 12px;
+
+.modal {
+  :global(.ant-modal-container),
+  :global(.ant-modal-content) {
+    padding: 0;
+    overflow: hidden;
+    border-radius: @modal-radius;
+  }
+
+  :global(.ant-modal-body) {
+    padding: 0;
+  }
+}
+
+// 真全屏：铺满视口，去掉 antd 垂直居中带来的留白与 transform
+.fullscreenWrap {
+  overflow: hidden !important;
+
+  :global(.ant-modal) {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+  }
+}
+
+.fullscreenContent {
+  border-radius: 0 !important;
+}
+
+.shell {
+  display: flex;
+  flex-direction: column;
+  max-height: min(88vh, 860px);
+}
+
+.shellFullscreen {
+  height: 100%;
+  max-height: none;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-shrink: 0;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-subtle, @border-subtle);
+  background: var(--bg-container, @bg-container);
+}
+
+.headerMain {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  min-width: 0;
+  flex: 1;
+}
+
+.iconBox {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  font-size: 22px;
+  background: var(--color-primary-soft, @color-primary-soft);
+  color: var(--color-primary, @color-primary);
+
+  &[data-type='1'] {
+    background: rgba(22, 119, 255, 0.12);
+    color: var(--color-info, @color-info);
+  }
+}
+
+.headerText {
+  min-width: 0;
+  flex: 1;
+}
+
+.title {
+  margin: 0 0 8px !important;
+  font-size: 18px !important;
+  line-height: 1.4 !important;
 }
 
 .meta {
-  margin-bottom: 16px;
+  :global(.ant-typography) {
+    margin: 0;
+  }
+}
+
+.time {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.headerActions {
+  flex-shrink: 0;
+}
+
+.body {
+  flex: 1;
+  min-height: 200px;
+  overflow-y: auto;
+  padding: 24px 32px;
+  background: var(--bg-surface, @bg-surface);
+}
+
+.shellFullscreen .body {
+  min-height: 0;
+}
+
+.richContent {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.shellFullscreen .richContent {
+  max-width: 1200px;
+}
+
+.footer {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 24px;
+  border-top: 1px solid var(--border-subtle, @border-subtle);
+  background: var(--bg-container, @bg-container);
 }

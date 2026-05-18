@@ -17,7 +17,7 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
           background: 'var(--bg-base)',
         }}
       >
-        <Spin size="large" tip="加载中..." />
+        <Spin size="large" description="加载中..." />
       </div>
     );
   }

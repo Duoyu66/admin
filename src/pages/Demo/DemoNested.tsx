@@ -50,7 +50,7 @@ export function DemoNested() {
     <>
       <PageHeader title="四层菜单" description="Ant Design Menu 多级展开（inline 模式）" />
 
-      <Card className={styles.section} bordered={false}>
+      <Card className={styles.section} variant="borderless">
         <div className={nestedStyles.wrap}>
           <Menu
             className={nestedStyles.menu}

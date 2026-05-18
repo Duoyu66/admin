@@ -1,5 +1,5 @@
 import { Spin } from 'antd';
 
-export function Spinner({ tip = '加载中...' }: { tip?: string }) {
-  return <Spin tip={tip} />;
+export function Spinner({ description = '加载中...' }: { description?: string }) {
+  return <Spin description={description} />;
 }

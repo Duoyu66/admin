@@ -17,7 +17,7 @@ export function PageShell({ title, description, toolbar, children }: PageShellPr
           <Space wrap>{toolbar}</Space>
         </div>
       )}
-      <Card bordered={false} style={{ borderRadius: 12 }}>
+      <Card variant="borderless" style={{ borderRadius: 12 }}>
         {children}
       </Card>
     </>

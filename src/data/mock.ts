@@ -1,7 +1,6 @@
 import type {
   CurrentUser,
   MenuGroup,
-  NotificationItem,
   OperationLog,
   StatCardData,
   UserRecord,
@@ -44,13 +43,6 @@ export const currentUser: CurrentUser = {
   avatar: 'A',
   role: '超级管理员',
 };
-
-/** 通知 */
-export const notifications: NotificationItem[] = [
-  { id: 'n1', title: '3 条用户待审核', time: '10 分钟前', read: false },
-  { id: 'n2', title: '系统备份已完成', time: '1 小时前', read: false },
-  { id: 'n3', title: '周报已生成', time: '昨天', read: true },
-];
 
 /** 仪表盘统计 */
 export const dashboardStats: StatCardData[] = [

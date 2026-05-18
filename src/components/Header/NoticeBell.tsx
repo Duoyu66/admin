@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Badge, Button, Empty, List, Popover, Space, Tag, Typography } from 'antd';
+import { Badge, Button, Empty, List, Popover, Space, Spin, Tag, Typography } from 'antd';
 import { BellOutlined } from '@ant-design/icons';
 import { useAuth } from '@/hooks/useAuth';
 import { useNoticeInbox } from '@/hooks/queries/useNotices';
@@ -8,6 +8,7 @@ import { NoticeDetailModal } from '@/components/NoticeDetailModal/NoticeDetailMo
 import { fetchPublishedNotice } from '@/api/notice';
 import type { NoticeInbox, SysNotice } from '@/api/notice';
 import { stripHtml } from '@/utils/html';
+import { normalizeNoticeInbox } from '@/utils/notice';
 import { NOTICE_PUBLISHED_EVENT } from '@/lib/noticeWebSocket';
 import styles from './NoticeBell.module.less';
 
@@ -19,10 +20,18 @@ export function NoticeBell() {
   const { hasPermission } = useAuth();
   const [open, setOpen] = useState(false);
   const [viewNotice, setViewNotice] = useState<SysNotice | null>(null);
-  const { inboxQuery, unreadQuery, markReadMutation, markAllReadMutation } = useNoticeInbox();
+  const {
+    inboxQuery,
+    unreadQuery,
+    markReadMutation,
+    markAllReadMutation,
+    refetchInbox,
+  } = useNoticeInbox();
 
   const list = inboxQuery.data ?? [];
   const unread = unreadQuery.data?.count ?? 0;
+  const inboxLoading = inboxQuery.isFetching && !inboxQuery.data;
+  const inboxError = inboxQuery.isError;
 
   const handleOpenItem = useCallback(
     async (item: NoticeInbox) => {
@@ -51,11 +60,18 @@ export function NoticeBell() {
     const onPublished = (e: Event) => {
       const item = (e as CustomEvent<NoticeInbox>).detail;
       if (!item?.id) return;
-      void handleOpenItem(item);
+      void handleOpenItem(normalizeNoticeInbox(item));
     };
     window.addEventListener(NOTICE_PUBLISHED_EVENT, onPublished);
     return () => window.removeEventListener(NOTICE_PUBLISHED_EVENT, onPublished);
   }, [handleOpenItem]);
+
+  const handlePopoverOpen = (next: boolean) => {
+    setOpen(next);
+    if (next) {
+      refetchInbox();
+    }
+  };
 
   const content = (
     <div className={styles.panel}>
@@ -72,7 +88,20 @@ export function NoticeBell() {
           </Button>
         )}
       </div>
-      {list.length === 0 ? (
+      {inboxLoading ? (
+        <div className={styles.state}>
+          <Spin size="small" />
+        </div>
+      ) : inboxError ? (
+        <Empty
+          image={Empty.PRESENTED_IMAGE_SIMPLE}
+          description="公告加载失败"
+        >
+          <Button type="link" size="small" onClick={() => refetchInbox()}>
+            重试
+          </Button>
+        </Empty>
+      ) : list.length === 0 ? (
         <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="暂无公告" />
       ) : (
         <List
@@ -136,7 +165,7 @@ export function NoticeBell() {
         title={null}
         trigger="click"
         open={open}
-        onOpenChange={setOpen}
+        onOpenChange={handlePopoverOpen}
         placement="bottomRight"
         overlayClassName={styles.popover}
       >

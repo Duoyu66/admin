@@ -52,7 +52,7 @@ export function Profile() {
     <>
       <PageHeader title="个人中心" description="修改个人资料与登录密码" />
 
-      <Card title="基本信息" style={{ marginBottom: 20, borderRadius: 12 }} bordered={false}>
+      <Card title="基本信息" style={{ marginBottom: 20, borderRadius: 12 }} variant="borderless">
         <Form
           form={profileForm}
           layout="vertical"
@@ -83,7 +83,7 @@ export function Profile() {
         </Form>
       </Card>
 
-      <Card title="修改密码" bordered={false} style={{ borderRadius: 12 }}>
+      <Card title="修改密码" variant="borderless" style={{ borderRadius: 12 }}>
         <Form
           form={pwdForm}
           layout="vertical"

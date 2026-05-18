@@ -91,7 +91,7 @@ export function NoticeForm() {
       </Button>
 
       <Spin spinning={isEdit && isLoading}>
-        <Card bordered={false} className={styles.card}>
+        <Card variant="borderless" className={styles.card}>
           <Form form={form} layout="vertical" className={styles.form}>
             <Form.Item
               name="title"

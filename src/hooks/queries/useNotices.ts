@@ -17,6 +17,8 @@ import {
   updateNotice,
 } from '@/api/notice';
 import { queryKeys } from '@/api/queryKeys';
+import { getToken } from '@/api/request';
+import { normalizeNoticeInboxList } from '@/utils/notice';
 
 const PAGE_SIZE = 10;
 
@@ -38,17 +40,20 @@ export function useNoticesQuery(page: number, keyword: string, status?: number) 
 
 export function useNoticeInbox() {
   const queryClient = useQueryClient();
+  const enabled = !!getToken();
 
   const inboxQuery = useQuery({
     queryKey: queryKeys.notices.inbox(),
-    queryFn: () => fetchNoticeInbox(30),
-    staleTime: 30 * 1000,
+    queryFn: async () => normalizeNoticeInboxList(await fetchNoticeInbox(30)),
+    enabled,
+    staleTime: 15 * 1000,
   });
 
   const unreadQuery = useQuery({
     queryKey: queryKeys.notices.unread(),
     queryFn: fetchUnreadCount,
-    staleTime: 30 * 1000,
+    enabled,
+    staleTime: 15 * 1000,
   });
 
   const invalidate = () => {
@@ -66,7 +71,19 @@ export function useNoticeInbox() {
     onSuccess: invalidate,
   });
 
-  return { inboxQuery, unreadQuery, markReadMutation, markAllReadMutation, invalidate };
+  const refetchInbox = () => {
+    void inboxQuery.refetch();
+    void unreadQuery.refetch();
+  };
+
+  return {
+    inboxQuery,
+    unreadQuery,
+    markReadMutation,
+    markAllReadMutation,
+    invalidate,
+    refetchInbox,
+  };
 }
 
 export function useNoticeMutations() {
@@ -93,17 +110,18 @@ export function useNoticeMutations() {
   const updateMutation = useMutation({
     mutationFn: ({ id, data }: { id: number; data: Parameters<typeof updateNotice>[1] }) =>
       updateNotice(id, data),
-    onSuccess: (_data, { data }) => {
+    onSuccess: () => {
       invalidateList();
-      if ((data as { status?: number }).status === 1) {
-        invalidateInbox();
-      }
+      invalidateInbox();
     },
   });
 
   const deleteMutation = useMutation({
     mutationFn: deleteNotice,
-    onSuccess: invalidateList,
+    onSuccess: () => {
+      invalidateList();
+      invalidateInbox();
+    },
   });
 
   const publishMutation = useMutation({

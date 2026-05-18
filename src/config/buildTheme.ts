@@ -74,10 +74,6 @@ export function buildAntdTheme(
         itemSelectedColor: c.primaryActive,
         subMenuItemBg: 'transparent',
       },
-      Button: {
-        primaryColor: '#FFFFFF',
-        primaryShadow: `0 2px 4px ${c.primarySoft}`,
-      },
       Card: { colorBgContainer: c.bgContainer, paddingLG: 24 },
       Table: {
         colorBgContainer: c.bgContainer,
@@ -85,6 +81,19 @@ export function buildAntdTheme(
         headerColor: c.textSecondary,
         rowHoverBg: c.bgHover,
         borderColor: c.borderSecondary,
+        cellPaddingBlock: 10,
+        cellPaddingInline: 12,
+        cellPaddingBlockMD: 8,
+        cellPaddingInlineMD: 10,
+        cellPaddingBlockSM: 6,
+        cellPaddingInlineSM: 8,
+        cellFontSize: 14,
+        cellFontSizeMD: 14,
+        cellFontSizeSM: 13,
+      },
+      Button: {
+        primaryColor: '#FFFFFF',
+        primaryShadow: `0 2px 4px ${c.primarySoft}`,
       },
       Input: {
         activeBorderColor: c.primary,

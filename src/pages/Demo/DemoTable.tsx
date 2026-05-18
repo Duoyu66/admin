@@ -55,7 +55,7 @@ export function DemoTable() {
     <>
       <PageHeader title="表格" description="Ant Design Table 分页、选择、固定列等" />
 
-      <Card className={styles.section} bordered={false}>
+      <Card className={styles.section} variant="borderless">
         <div className={styles.gap} style={{ marginBottom: 16 }}>
           <Button type="primary">新增</Button>
           <Button disabled={selected.length === 0}>批量删除 ({selected.length})</Button>

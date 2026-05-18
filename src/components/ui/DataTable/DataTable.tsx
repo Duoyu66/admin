@@ -17,7 +17,7 @@ export function DataTable<T extends object>({
   return (
     <Card
       title={cardTitle}
-      bordered={false}
+      variant="borderless"
       style={{ borderRadius: 12 }}
       styles={{ body: { padding: 0 } }}
     >

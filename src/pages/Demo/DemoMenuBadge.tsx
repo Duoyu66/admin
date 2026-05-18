@@ -124,7 +124,7 @@ export function DemoMenuBadge() {
 
       <Row gutter={[16, 16]}>
         <Col xs={24} lg={9}>
-          <Card title="菜单预览" className={styles.section} bordered={false}>
+          <Card title="菜单预览" className={styles.section} variant="borderless">
             <Menu
               key={menuVersion}
               mode="inline"
@@ -138,7 +138,7 @@ export function DemoMenuBadge() {
         </Col>
 
         <Col xs={24} lg={15}>
-          <Card title="徽标配置" className={styles.section} bordered={false}>
+          <Card title="徽标配置" className={styles.section} variant="borderless">
             <Form layout="vertical" className={badgeStyles.form}>
               <Form.Item label="类型">
                 <Segmented

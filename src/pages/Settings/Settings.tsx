@@ -19,7 +19,7 @@ export function Settings() {
     <>
       <PageHeader title="系统设置" description="站点基础信息与偏好配置" />
 
-      <Card title="基本设置" bordered={false} style={{ borderRadius: 12 }}>
+      <Card title="基本设置" variant="borderless" style={{ borderRadius: 12 }}>
         <Form
           form={form}
           layout="vertical"

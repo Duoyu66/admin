@@ -223,7 +223,7 @@ export function Users() {
         )}
       </div>
 
-      <Card bordered={false} styles={{ body: { padding: 0 } }} style={{ borderRadius: 12 }}>
+      <Card variant="borderless" styles={{ body: { padding: 0 } }} style={{ borderRadius: 12 }}>
         <Table<SysUser>
           rowKey="id"
           columns={columns}

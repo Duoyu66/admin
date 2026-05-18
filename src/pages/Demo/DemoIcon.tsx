@@ -11,7 +11,7 @@ export function DemoIcon() {
     <>
       <PageHeader title="图标" description="菜单配置可选的 Lucide 图标（与侧栏一致）" />
 
-      <Card className={styles.section} bordered={false}>
+      <Card className={styles.section} variant="borderless">
         <div className={iconStyles.grid}>
           {MENU_ICON_OPTIONS.map((opt) => (
             <Tooltip key={opt.value} title={opt.value}>
