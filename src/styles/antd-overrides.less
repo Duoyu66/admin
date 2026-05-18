@@ -345,6 +345,53 @@
 
 // 表格 — 仅单元格紧凑（不影响表格外工具栏）
 .ant-table-wrapper {
+  // 固定列：实心背景 + 高层级（antd 用 background 简写，须一并覆盖）
+  .ant-table-tbody .ant-table-cell.ant-table-cell-fix,
+  .ant-table-tbody td.ant-table-cell-fix-end,
+  .ant-table-tbody td.ant-table-cell-fix-start,
+  .ant-table-tbody td.ant-table-cell-fix-right,
+  .ant-table-tbody td.ant-table-cell-fix-left {
+    --z-offset-reverse: 9999 !important;
+    z-index: 100 !important;
+    background: #ffffff !important;
+  }
+
+  // 行 hover：固定列同步高亮（优先级高于 antd 的 cell-row-hover）
+  .ant-table-tbody .ant-table-row:hover > .ant-table-cell.ant-table-cell-fix,
+  .ant-table-tbody .ant-table-row:hover > td.ant-table-cell-fix-end,
+  .ant-table-tbody .ant-table-row:hover > td.ant-table-cell-fix-start,
+  .ant-table-tbody .ant-table-row:hover > td.ant-table-cell-fix-right,
+  .ant-table-tbody .ant-table-row:hover > td.ant-table-cell-fix-left,
+  .ant-table-tbody .ant-table-row > .ant-table-cell.ant-table-cell-fix.ant-table-cell-row-hover,
+  .ant-table-tbody .ant-table-row > td.ant-table-cell-fix-end.ant-table-cell-row-hover,
+  .ant-table-tbody .ant-table-row > td.ant-table-cell-fix-start.ant-table-cell-row-hover,
+  .ant-table-tbody .ant-table-row > td.ant-table-cell-fix-right.ant-table-cell-row-hover,
+  .ant-table-tbody .ant-table-row > td.ant-table-cell-fix-left.ant-table-cell-row-hover {
+    z-index: 101 !important;
+    background: @bg-hover !important;
+  }
+
+  // 非固定列 hover 时不抬高，避免盖住操作列
+  .ant-table-tbody .ant-table-row > .ant-table-cell-row-hover:not(.ant-table-cell-fix):not(
+      .ant-table-cell-fix-end
+    ):not(.ant-table-cell-fix-start):not(.ant-table-cell-fix-right):not(.ant-table-cell-fix-left) {
+    position: relative;
+    z-index: 0 !important;
+    overflow: hidden;
+    background: @bg-hover;
+  }
+
+  .ant-table-thead .ant-table-cell.ant-table-cell-fix,
+  .ant-table-thead .ant-table-cell-fix-end,
+  .ant-table-thead .ant-table-cell-fix-start {
+    z-index: 102 !important;
+    background: var(--ant-table-header-bg, @bg-surface) !important;
+  }
+
+  .ant-table-thead .ant-table-cell {
+    background: var(--ant-table-header-bg, @bg-surface);
+  }
+
   .ant-table {
     font-size: 14px;
   }

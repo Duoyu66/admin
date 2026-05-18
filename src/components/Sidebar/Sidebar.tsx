@@ -4,6 +4,7 @@ import { Layout, Menu } from 'antd';
 import { useAuth } from '@/hooks/useAuth';
 import { useLayoutStore } from '@/stores/layoutStore';
 import { buildAntdMenuItems, getOpenMenuKeys } from '@/utils/antd-menu';
+import logoImg from '@/img/logo-mg.png';
 import styles from './Sidebar.module.less';
 
 const { Sider } = Layout;
@@ -39,8 +40,18 @@ export function Sidebar() {
       collapsible
       trigger={null}
     >
-      <div className="admin-sider-brand">
-        <span className="admin-sider-logo">木</span>
+      <div className={`admin-sider-brand ${styles.brand}`}>
+        <div className={styles.logoWrap}>
+          <img
+            src={logoImg}
+            alt="木瓜后台"
+            className={styles.logo}
+            width={36}
+            height={36}
+            decoding="async"
+            draggable={false}
+          />
+        </div>
         <div className="admin-sider-brand-text">
           <div className="admin-sider-title">木瓜后台</div>
         </div>
